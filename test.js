@@ -1,9 +1,18 @@
-function getPolynom() {
-  if (!arguments) return null;
-  if(arguments.length === 1) return (x) => arguments[0]
-  if(arguments.length === 2) return (x) => arguments[0]*x+arguments[1]
-  return (x) => arguments[0]*(x**2)+arguments[1]*x+arguments[2];
+function memoize(func) {
+  let callCount = 0;
+  let cache = null;
+
+  return () => {
+    if (callCount === 0) {
+      cache = func.call(null);
+      callCount += 1;
+      return cache;
+    }
+    return cache;
+  };
 }
 
-const poly = getPolynom(8)
-console.log(poly(5))
+const random = () => Math.random();
+const memo = memoize(random);
+console.log(memo())
+console.log(memo());
