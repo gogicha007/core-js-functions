@@ -1,15 +1,13 @@
-function retry(func, attempts) {
-  return () => {
-    try {
-      return func();
-    } catch (error) {
-      if (--attempts) return retry(func, attempts)();
-      return func();
-    }
-  };
+function getIdGeneratorFunction(startFrom) {
+  throw new Error('Not implemented');
 }
 
-const errorThrower = () => {
-  throw new Error('test');
-};
-console.log(retry(errorThrower, 2)());
+
+const getId4 = getIdGenerator(4);
+const getId10 = gerIdGenerator(10);
+console.log(getId4()) //=> 4
+console.log(getId10()) //=> 10
+console.log(getId4()) //=> 5
+console.log(getId4()) //=> 6
+console.log(getId4()) //=> 7
+console.log(getId10()) //=> 11
