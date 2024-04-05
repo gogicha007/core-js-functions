@@ -1,18 +1,5 @@
-function memoize(func) {
-  let callCount = 0;
-  let cache = null;
+const attempt = 0, retryer = 2
 
-  return () => {
-    if (callCount === 0) {
-      cache = func.call(null);
-      callCount += 1;
-      return cache;
-    }
-    return cache;
-  };
-}
+console.log(attempt)
+console.log(retryer)
 
-const random = () => Math.random();
-const memo = memoize(random);
-console.log(memo())
-console.log(memo());
